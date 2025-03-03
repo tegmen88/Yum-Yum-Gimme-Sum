@@ -15,106 +15,20 @@
 .menu-content {
   max-width: 95%;
   margin: 0 auto;
-  padding: 40px;
+  padding: 2.5rem; /* 40px motsvarar 2.5rem vid 16px grundstorlek */
   background-color: #605858;
   color: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-/* Ingredienser för Matartiklar */
-.ingredients-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.ingredient-item {
-  padding: 5px 10px;
-  background-color: #F1F0EC3D;
-  color: white;
-  border-radius: 5px;
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-/* Flexlayout: Dippsåser */
-.dipso-lists {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.dip-list-item {
-  padding: 5px 10px;
-  background-color: #F1F0EC3D;
-  color: white;
-  border-radius: 5px;
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-/* Flexlayout: Läsk */
-.dips-lists {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.dips-lists li {
-  padding: 5px 10px;
-  background-color: #F1F0EC3D;
-  color: white;
-  border-radius: 5px;
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-.dips-lists li:hover, .dip-list-item:hover {
-  background-color: #353131;
-}
-
-/* Bakgrund - Täcker hela skärmen */
-.menu-container {
-  background-image: url('../assets/menu-bg.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #8ed8bf;
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Menyinnehåll */
-.menu-content {
-  max-width: 95%;
-  margin: 0 auto;
-  padding: 40px;
-  background-color: #605858;
-  color: white;
-  border-radius: 10px;
+  border-radius: 0.625rem; /* 10px = 0.625rem */
   overflow: hidden;
   box-sizing: border-box;
 
   @media (max-width: 768px) {
-    padding: 20px;
+    padding: 1.25rem; /* 20px = 1.25rem */
     font-size: 0.9rem;
   }
 
   @media (max-width: 480px) {
-    padding: 15px;
+    padding: 1rem; /* 15px = 1rem */
     font-size: 0.8rem;
   }
 }
@@ -123,25 +37,25 @@
 .ingredients-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 0.5rem; /* 8px = 0.5rem */
   list-style: none;
   padding: 0;
   margin: 0;
 
   @media (max-width: 768px) {
-    gap: 5px;
+    gap: 0.3125rem; /* 5px = 0.3125rem */
   }
 
   @media (max-width: 480px) {
-    gap: 3px;
+    gap: 0.1875rem; /* 3px = 0.1875rem */
   }
 }
 
 .ingredient-item {
-  padding: 5px 10px;
+  padding: 0.3125rem 0.625rem; /* 5px 10px = 0.3125rem 0.625rem */
   background-color: #F1F0EC3D;
   color: white;
-  border-radius: 5px;
+  border-radius: 0.3125rem; /* 5px = 0.3125rem */
   font-size: 0.9rem;
   text-align: center;
 
@@ -151,7 +65,7 @@
 
   @media (max-width: 480px) {
     font-size: 0.7rem;
-    padding: 3px 6px;
+    padding: 0.1875rem 0.375rem; /* 3px 6px = 0.1875rem 0.375rem */
   }
 }
 
@@ -159,25 +73,25 @@
 .dipso-lists {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 0.9375rem; /* 15px = 0.9375rem */
   list-style: none;
   padding: 0;
   margin: 0;
 
   @media (max-width: 768px) {
-    gap: 10px;
+    gap: 0.625rem; /* 10px = 0.625rem */
   }
 
   @media (max-width: 480px) {
-    gap: 5px;
+    gap: 0.3125rem; /* 5px = 0.3125rem */
   }
 }
 
 .dip-list-item {
-  padding: 5px 10px;
+  padding: 0.3125rem 0.625rem; /* 5px 10px = 0.3125rem 0.625rem */
   background-color: #F1F0EC3D;
   color: white;
-  border-radius: 5px;
+  border-radius: 0.3125rem; /* 5px = 0.3125rem */
   font-size: 0.9rem;
   text-align: center;
 
@@ -187,7 +101,7 @@
 
   @media (max-width: 480px) {
     font-size: 0.7rem;
-    padding: 3px 6px;
+    padding: 0.1875rem 0.375rem; /* 3px 6px = 0.1875rem 0.375rem */
   }
 }
 
@@ -195,25 +109,25 @@
 .dips-lists {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 0.9375rem; /* 15px = 0.9375rem */
   list-style: none;
   padding: 0;
   margin: 0;
 
   @media (max-width: 768px) {
-    gap: 10px;
+    gap: 0.625rem; /* 10px = 0.625rem */
   }
 
   @media (max-width: 480px) {
-    gap: 5px;
+    gap: 0.3125rem; /* 5px = 0.3125rem */
   }
 }
 
 .dips-lists li {
-  padding: 5px 10px;
+  padding: 0.3125rem 0.625rem; /* 5px 10px = 0.3125rem 0.625rem */
   background-color: #F1F0EC3D;
   color: white;
-  border-radius: 5px;
+  border-radius: 0.3125rem; /* 5px = 0.3125rem */
   font-size: 0.9rem;
   text-align: center;
 
@@ -223,10 +137,15 @@
 
   @media (max-width: 480px) {
     font-size: 0.7rem;
-    padding: 3px 6px;
+    padding: 0.1875rem 0.375rem; /* 3px 6px = 0.1875rem 0.375rem */
   }
 }
 
 .dips-lists li:hover, .dip-list-item:hover {
   background-color: #353131;
+}
+
+button {
+  all: unset; /* Tar bort standardstilar från knappen */
+  cursor: pointer; /* Behåll klickbarheten */
 }

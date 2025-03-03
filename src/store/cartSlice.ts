@@ -11,8 +11,20 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
+        // addToCart(state, action: PayloadAction<ICartItem>) {
+        //     state.items.push(action.payload);
+        // },
+
         addToCart(state, action: PayloadAction<ICartItem>) {
-            state.items.push(action.payload);
+            const existingItem = state.items.find((item) => item.id === action.payload.id);
+
+            if (existingItem) {
+                // Om produkten redan finns, uppdatera kvantitet
+                existingItem.quantity += action.payload.quantity;
+            } else {
+                // Om produkten inte finns, lägg till den som ny
+                state.items.push(action.payload);
+            }
         },
         removeFromCart(state, action: PayloadAction<string>) {
             state.items = state.items.filter(item => item.id !== action.payload);

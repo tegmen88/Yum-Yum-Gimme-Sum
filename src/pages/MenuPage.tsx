@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { fetchMenu } from '../api/api.ts';
 import { IMenuItem } from '../interfaces/MenuItemInterface';
 import '../styles/menu.scss';
+import {addToCart} from "../store/cartSlice.ts";
+// import AddIcon from '@mui/icons-material/Add';
+import { useDispatch } from 'react-redux';
 
 const MenuPage: React.FC = () => {
+    const dispatch = useDispatch();
+
     const [menu, setMenu] = useState<IMenuItem[]>([]); // State för menyn
     const [loading, setLoading] = useState<boolean>(true); // För laddningsindikation
     const [error, setError] = useState<string | null>(null); // För felhantering
@@ -29,7 +34,22 @@ const MenuPage: React.FC = () => {
         loadMenu();
     }, []);
 
-    // Visa laddningsmeddelande
+    // Funktion lägga artiklar i varukorgen
+    const handleAddToCart = (item: IMenuItem) => {
+        dispatch(
+            addToCart({
+                id: item.id,
+                name: item.name,
+                price: item.price || 0,
+                quantity: 1
+            })
+        );
+
+        console.log(item);
+
+    };
+
+        // Visa laddningsmeddelande
     if (loading) return <p>Laddar menyn...</p>;
 
     // Visa felmeddelande
@@ -50,24 +70,21 @@ const MenuPage: React.FC = () => {
                     {/* Dölj rubriken här */}
                     <ul>
                         {foodItems.map((item) => (
-                            <li key={item.id}>
+                            <li key={item.id} className="menu-item" onClick={() => handleAddToCart(item)}>
                                 <h3>
                                     {item.name} - {item.price || 0} kr
                                 </h3>
-                                <p>{item.ingredients || 'Ingen ingrediens tillgänglig.'}</p>
+                                <p>{item.ingredients || 'Ingen ingrediens tillgänglig'}</p>
 
-                                {/* Visa ingredienser med mellanslag mellan varje */}
-                                {item.ingredients &&
-                                    typeof item.ingredients === 'string' &&
-                                    item.ingredients.length > 0 && (
-                                        <ul className="ingredients-list">
-                                            {item.ingredients.split(', ').map((ingredient, index) => (
-                                                <li key={index} className="ingredient-item">
-                                                    {ingredient.trim()}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
+                                {/* Knapp - utan synlighet */}
+                                <button
+                                    className="add-button"
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // Hindra bubbla till <li> om det behövs
+                                        handleAddToCart(item);
+                                    }}
+                                >
+                                </button>
                             </li>
                         ))}
                     </ul>
@@ -76,10 +93,14 @@ const MenuPage: React.FC = () => {
                 {/* Andra sektionen: Dippsåser */}
                 <div className="menu-category dip-category">
                     <h2>Dippsåser 19 kr</h2>
+
                     <ul className="dipso-lists">
                         {dipItems.map((item) => (
                             <li key={item.id} className="dip-list-item">
-                                {item.name} {/* Visa endast namn */}
+                                {item.name}
+
+                                <button onClick={() => handleAddToCart(item)}></button>
+
                             </li>
                         ))}
                     </ul>
@@ -91,7 +112,10 @@ const MenuPage: React.FC = () => {
                     <ul className="dips-lists">
                         {drinkItems.map((item) => (
                             <li key={item.id}>
-                                <p>{item.name}</p> {/* Visa endast namn */}
+                                <p>{item.name}</p>
+
+                                <button onClick={() => handleAddToCart(item)}></button>
+
                             </li>
                         ))}
                     </ul>
