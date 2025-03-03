@@ -1,0 +1,13 @@
+// Definierar typen för varje objekt i varukorgen
+
+export interface MenuState {
+    items: IMenuItem[];
+    status: 'idle' | 'loading' | 'succeeded' | 'failed'; // visa en status för se om menyn laddas
+    currentItemId: string | null; // Kan vara null om ingen artikel är vald
+}
+
+export interface IMenuItem {
+        id: string;
+        name: string;
+        price: number;
+}

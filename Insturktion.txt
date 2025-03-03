@@ -1,7 +1,13 @@
-Importerande paketer:
--   Router
--   Redux
--   SASS
+# Importerande paketer:
+react	            -   UI-bibliotek för att bygga komponenter
+react-dom	        -   Gör det möjligt att rendera React i webbläsaren
+vite	            -   Snabb utvecklingsserver
+typescript  	    -   Ger typning till JavaScript
+react-router-dom	-   Hanterar sidnavigering och URL-routing
+redux	            -   Globalt tillståndshanteringsverktyg
+@reduxjs/toolkit	-   Modern version av Redux med enklare API
+react-redux	        -   Kopplar samman Redux med React
+sass	            -   Gör det möjligt att använda SCSS för styling
 
 npm install react-router-dom redux redux-toolkit
 npm install -g sass
@@ -10,4 +16,5 @@ sass --watch input.scss:output.css
 
 https://sass-lang.com/install/
 
-
+npm list react-redux
+npm install react-redux

@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css'
+import './styles/global.scss';
 import OrderPage from "./pages/OrderPage.tsx";
 import ReceiptPage from "./pages/ReceiptPage.tsx";
 import CartPage from "./pages/CartPage.tsx";
 import MenuPage from "./pages/MenuPage.tsx";
+import MenuItem from "./components/MenuItem.tsx";
 
 
 function App() {
@@ -12,6 +13,9 @@ function App() {
             <Routes>
                 <Route path="/" element={<MenuPage />} />
                 <Route path="/menu" element={<MenuPage />} />
+
+                <Route path="/menu/item/:itemId" element={<MenuItem />} />
+
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/cart/order" element={<OrderPage />} />
                 <Route path="/receipt" element={<ReceiptPage />} />
