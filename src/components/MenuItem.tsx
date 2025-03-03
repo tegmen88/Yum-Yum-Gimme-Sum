@@ -23,6 +23,9 @@ const MenuItem: React.FC = () => {
         <div>
             <h2>{item.name}</h2>
             <p>{item.price} kr</p>
+            <p>{item.description}</p>
+            <p>{item.category}</p>
+            <p>{item.ingredients}</p>
         </div>
     );
 };

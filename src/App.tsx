@@ -5,10 +5,27 @@ import ReceiptPage from "./pages/ReceiptPage.tsx";
 import CartPage from "./pages/CartPage.tsx";
 import MenuPage from "./pages/MenuPage.tsx";
 import MenuItem from "./components/MenuItem.tsx";
+import {useEffect} from "react";
+import {fetchMenu} from "./api/api.ts";
 
 
 function App() {
-    return (
+
+    useEffect(() => {
+        const loadMenu = async () => {
+            try {
+                const menu = await fetchMenu();
+                console.log("Menu loaded:", menu);
+            } catch (err) {
+                console.error("Error loading menu:", err);
+            }
+        };
+
+        loadMenu();
+    }, []);
+
+
+        return (
         <Router>
             <Routes>
                 <Route path="/" element={<MenuPage />} />

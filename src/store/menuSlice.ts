@@ -4,8 +4,8 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { fetchMenu } from '../api/api';
 import { MenuState, IMenuItem } from '../interfaces/MenuItemInterface';
 
-// Async Thunk för att hämta menyobjekt från API
-export const fetchMenuItems = createAsyncThunk('menu/fetchMenuItems', async () => {
+// Async Thunk som hämtar menyobjekt från API
+export const fetchMenuItems = createAsyncThunk('/menu', async () => {
     return await fetchMenu();
 });
 
@@ -18,7 +18,7 @@ const initialState: MenuState = {
 
 const menuSlice = createSlice({
     name: 'menu',
-    initialState, // Använder nu korrekt typad initial state
+    initialState,
     reducers: {
         // Reducer för att sätta det aktiva objektets ID
         setCurrentItem: (state, action: PayloadAction<string | null>) => {
@@ -28,7 +28,7 @@ const menuSlice = createSlice({
             state.items = action.payload; // Payload ska vara en IMenuItem[]
         },
         setCurrentItemId(state, action: PayloadAction<string | null>) {
-            state.currentItemId = action.payload; // En sträng eller null
+            state.currentItemId = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -38,21 +38,21 @@ const menuSlice = createSlice({
             })
             .addCase(
                 fetchMenuItems.fulfilled,
-                (state, action: PayloadAction<IMenuItem[]>) => {
-                    if (!action.payload || action.payload.length === 0) {
+                (state, action: PayloadAction<{ items: IMenuItem[] }>) => { // Ändrat typ för action
+                    if (!action.payload || action.payload.items.length === 0) {
                         console.warn('Tom menydata returnerades från API');
                         state.status = 'failed';
                         return;
                     }
 
-                    console.log('API Response:', action.payload); // API-data
+                    console.log('API Response:', action.payload.items);
 
                     state.status = 'succeeded';
-                    state.items = action.payload; // Lägg till objekten i state
+                    state.items = action.payload.items; // Använd korrekt egenskap "items"
                 }
             )
             .addCase(fetchMenuItems.rejected, (state, action) => {
-                console.error('API Error:', action.error); // Felsök API-fel
+                console.error('API Error:', action.error);
                 state.status = 'failed';
             });
     },
