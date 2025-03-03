@@ -48,7 +48,7 @@ const menuSlice = createSlice({
                     console.log('API Response:', action.payload.items);
 
                     state.status = 'succeeded';
-                    state.items = action.payload.items; // Använd korrekt egenskap "items"
+                    state.items = action.payload.items;
                 }
             )
             .addCase(fetchMenuItems.rejected, (state, action) => {

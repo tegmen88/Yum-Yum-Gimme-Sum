@@ -1,28 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { fetchMenu } from '../api/api.ts';
 import { IMenuItem } from '../interfaces/MenuItemInterface';
+import '../styles/menu.scss';
 
 const MenuPage: React.FC = () => {
     const [menu, setMenu] = useState<IMenuItem[]>([]); // State för menyn
     const [loading, setLoading] = useState<boolean>(true); // För laddningsindikation
-    const [error, setError] = useState<string | null>(null); // För hantering av fel
+    const [error, setError] = useState<string | null>(null); // För felhantering
 
+    // Funktion för att ladda menyn från API
     useEffect(() => {
         const loadMenu = async () => {
             try {
                 setLoading(true);
-                const menuItems = await fetchMenu(); // Hämta API-datan
-                console.log('Hämtad meny från API:', menuItems);
-
-                // Plocka ut "items" från API-svaret
+                const menuItems = await fetchMenu();
                 if (menuItems && menuItems.items) {
-                    setMenu(menuItems.items); // Uppdatera menu med arrayen "items"
-                    console.log('Uppdaterad meny state:', menuItems.items);
+                    setMenu(menuItems.items); // Spara menydata från API
                 } else {
                     throw new Error('Felaktigt API-svar: "items" saknas.');
                 }
             } catch (err: any) {
-                console.error('Error loading menu:', err);
                 setError(err.message || 'Ett fel inträffade.');
             } finally {
                 setLoading(false);
@@ -32,30 +29,76 @@ const MenuPage: React.FC = () => {
         loadMenu();
     }, []);
 
-    // Kontrollera laddnings- och felindikatorer innan du visar data
+    // Visa laddningsmeddelande
     if (loading) return <p>Laddar menyn...</p>;
+
+    // Visa felmeddelande
     if (error) return <p>Fel vid laddning av menyn: {error}</p>;
 
+    // Separera data baserat på typer
+    const foodItems = menu.filter((item) => item.type === 'wonton');
+    const dipItems = menu.filter((item) => item.type === 'dip');
+    const drinkItems = menu.filter((item) => item.type === 'drink');
 
     return (
-        <div>
-            <h1>Menyn</h1>
-            <ul>
-                {menu.map((item) => (
-                    <li key={item.id || Math.random()}>
-                        <h3>{item.name || 'N/A'} - {item.price || 0} kr</h3>
-                        {/*<p>{item.description || 'Ingen beskrivning tillgänglig.'}</p>*/}
-                        {item.ingredients && item.ingredients.length > 0 && (
-                            <ul>
-                                {item.ingredients && Array.isArray(item.ingredients) && item.ingredients.map((ingredient, index) => (
-                                    <li key={index}>{ingredient}</li>
-                                ))}
-                            </ul>
-                        )}
-                    </li>
-                ))}
-            </ul>
+        <div className="menu-container">
+            <div className="menu-content">
+                <h1>Menyn</h1>
+
+                {/* Första sektionen: Mat */}
+                <div className="menu-category food-category">
+                    {/* Dölj rubriken här */}
+                    <ul>
+                        {foodItems.map((item) => (
+                            <li key={item.id}>
+                                <h3>
+                                    {item.name} - {item.price || 0} kr
+                                </h3>
+                                <p>{item.ingredients || 'Ingen ingrediens tillgänglig.'}</p>
+
+                                {/* Visa ingredienser med mellanslag mellan varje */}
+                                {item.ingredients &&
+                                    typeof item.ingredients === 'string' &&
+                                    item.ingredients.length > 0 && (
+                                        <ul className="ingredients-list">
+                                            {item.ingredients.split(', ').map((ingredient, index) => (
+                                                <li key={index} className="ingredient-item">
+                                                    {ingredient.trim()}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Andra sektionen: Dippsåser */}
+                <div className="menu-category dip-category">
+                    <h2>Dippsåser 19 kr</h2>
+                    <ul className="dipso-lists">
+                        {dipItems.map((item) => (
+                            <li key={item.id} className="dip-list-item">
+                                {item.name} {/* Visa endast namn */}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Tredje sektionen: Läsk */}
+                <div className="menu-category drink-category">
+                    <h2>Läsk 19 kr</h2>
+                    <ul className="dips-lists">
+                        {drinkItems.map((item) => (
+                            <li key={item.id}>
+                                <p>{item.name}</p> {/* Visa endast namn */}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
         </div>
+
     );
 };
 

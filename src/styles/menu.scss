@@ -1,2 +1,232 @@
-// Styling för menusidan
+/* Bakgrund - Täcker hela skärmen */
+.menu-container {
+  background-image: url('../assets/menu-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #8ed8bf;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
+/* Menyinnehåll */
+.menu-content {
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #605858;
+  color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Ingredienser för Matartiklar */
+.ingredients-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredient-item {
+  padding: 5px 10px;
+  background-color: #F1F0EC3D;
+  color: white;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Flexlayout: Dippsåser */
+.dipso-lists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dip-list-item {
+  padding: 5px 10px;
+  background-color: #F1F0EC3D;
+  color: white;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Flexlayout: Läsk */
+.dips-lists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dips-lists li {
+  padding: 5px 10px;
+  background-color: #F1F0EC3D;
+  color: white;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.dips-lists li:hover, .dip-list-item:hover {
+  background-color: #353131;
+}
+
+/* Bakgrund - Täcker hela skärmen */
+.menu-container {
+  background-image: url('../assets/menu-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #8ed8bf;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Menyinnehåll */
+.menu-content {
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #605858;
+  color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Ingredienser för Matartiklar */
+.ingredients-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    gap: 5px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 3px;
+  }
+}
+
+.ingredient-item {
+  padding: 5px 10px;
+  background-color: #F1F0EC3D;
+  color: white;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+}
+
+/* Flexlayout: Dippsåser */
+.dipso-lists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 5px;
+  }
+}
+
+.dip-list-item {
+  padding: 5px 10px;
+  background-color: #F1F0EC3D;
+  color: white;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+}
+
+/* Flexlayout: Läsk */
+.dips-lists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 5px;
+  }
+}
+
+.dips-lists li {
+  padding: 5px 10px;
+  background-color: #F1F0EC3D;
+  color: white;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+}
+
+.dips-lists li:hover, .dip-list-item:hover {
+  background-color: #353131;
+}

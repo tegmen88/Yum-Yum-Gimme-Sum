@@ -14,10 +14,17 @@ export interface IMenuItemTest {
 
 // Definiera strukturen för en menyartikel (justera efter API-svar)
 export interface IMenuItem {
-    id: string;         // Exempelvis ett unikt ID för varje menyartikel
-    name: string;       // Namn på rätten, t.ex. "Spaghetti Bolognese"
-    price: number;      // Pris på rätten, t.ex. 89.00
-    description?: string; // En valfri beskrivning av rätten
-    category?: string;  // T.ex. "Förrätt", "Huvudrätt" etc.
+    id: string;
+    name: string;
+    price: number;
+    type?: 'wonton' | 'dip' | 'drink';
+    description?: string;
+    category?: string;
     ingredients?: string;
 }
+
+export const menuTypes = [
+    { type: 'wonton', title: 'Wonton' },
+    { type: 'dip', title: 'Dipsås ' },
+    { type: 'drink', title: 'Läsk' },
+];
