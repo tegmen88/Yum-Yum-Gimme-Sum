@@ -1,0 +1,13 @@
+Importerande paketer:
+-   Router
+-   Redux
+-   SASS
+
+npm install react-router-dom redux redux-toolkit
+npm install -g sass
+
+sass --watch input.scss:output.css
+
+https://sass-lang.com/install/
+
+

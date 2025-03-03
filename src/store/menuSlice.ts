@@ -1,0 +1,2 @@
+// Redux slice för menyn
+

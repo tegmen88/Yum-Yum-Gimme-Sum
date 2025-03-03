@@ -1,0 +1,3 @@
+// Konfiguration av Redux Store
+
+
