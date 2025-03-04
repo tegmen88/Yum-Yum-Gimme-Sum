@@ -1,11 +1,6 @@
 // Redux slice för beställningar
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-// Definiera typ för state
-interface OrderState {
-    orders: { id: string; items: string[]; total: number }[];
-}
+import {OrderState} from "../interfaces/OrderInterface.ts";
 
 const initialState: OrderState = {
     orders: [],

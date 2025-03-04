@@ -3,7 +3,7 @@
 export interface MenuState {
     items: IMenuItem[];
     status: 'idle' | 'loading' | 'succeeded' | 'failed'; // visa en status för se om menyn laddas
-    currentItemId: string | null; // Kan vara null om ingen artikel är vald
+    currentItemId: string | null;
 }
 
 export interface IMenuItemTest {
@@ -12,7 +12,7 @@ export interface IMenuItemTest {
         price: number;
 }
 
-// Definiera strukturen för en menyartikel (justera efter API-svar)
+// Definierade strukturen för en menyartikel (justerat efter API-svar)
 export interface IMenuItem {
     id: string;
     name: string;

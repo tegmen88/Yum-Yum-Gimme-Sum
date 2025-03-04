@@ -4,7 +4,7 @@ import { removeFromCart, addToCart } from '../store/cartSlice';
 import { RootState } from "../store/store.ts";
 import {useNavigate} from "react-router-dom";
 import { useState } from 'react';
-import { placeOrder } from '../api/api.ts';
+import {getApiKey, placeOrder} from '../api/api.ts';
 
 const CartPage = () => {
     const dispatch = useDispatch();
@@ -23,8 +23,23 @@ const CartPage = () => {
         setLoading(true);
 
         try {
-            // Skicka produkter till API:et
-            const response = await placeOrder(cart);
+            const tenant = "my-foodtruck"; // Statisk tenant - hårdkodat
+            const apiKey = await getApiKey();
+            const items = cart.map((item) => Number(item.id)); // Säkerställ att IDs är nummer
+
+            // Validering
+            if (!tenant || typeof tenant !== "string") {
+                throw new Error("Felaktig tenant.");
+            }
+            if (!apiKey || typeof apiKey !== "string") {
+                throw new Error("API-nyckel saknas.");
+            }
+            if (!items || items.length === 0) {
+                throw new Error("Inga produkter att beställa.");
+            }
+
+            // Skicka korrekt data till API:et
+            const response = await placeOrder(tenant, apiKey, items);
 
             console.log("Beställning genomförd:", response);
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {placeOrder} from "../api/api.ts";
+import {getApiKey, placeOrder} from "../api/api.ts";
 import Navbar from "../components/Navbar.tsx";
 import '../styles/order.scss';
 
@@ -13,14 +13,19 @@ const OrderPage = () => {
         setLoading(true);
 
         try {
-            const data = await placeOrder([]); // modulära API-funktionen
-            setEta(data.eta); //  ETA sätts från API-svaret
+            const tenant = "my-foodtruck";
+            const apiKey = await getApiKey(); // Hämta API-nyckeln från backend
+            const items: number[] = []; // Tom array, fylls med produkt-ID:n senare
+
+            const data = await placeOrder(tenant, apiKey, items);
+            setEta(data.eta); // Spara och visa ETA
         } catch (err: any) {
             setError(err.message);
         } finally {
             setLoading(false);
         }
     };
+
 
     return (
         <div className='order-container'>

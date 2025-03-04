@@ -15,7 +15,11 @@ const Navbar = () => {
             <div className="menu-header">
 
                 {/* Vänsterlogga */}
-                <div className="menu-logo">
+                <div
+                    className="menu-logo"
+                     onClick={() => navigate('/menu')}
+                     style={{ cursor: 'pointer' }}
+                >
                     <img src={logo} alt="Logotyp" />
                 </div>
 

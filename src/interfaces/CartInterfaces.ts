@@ -5,7 +5,7 @@ export interface CartState {
 }
 
 export interface ICartItem {
-    id: string;
+    id: string | number;
     name: string;
     price: number;
     quantity: number;
@@ -13,7 +13,7 @@ export interface ICartItem {
 
 // Typ för `addToCart` och `removeFromCart` inputs
 export interface ICartActionPayload {
-    id: string;
+    id: string | number;
     name?: string; // Valfritt
     price?: number; // Valfritt
     quantity?: number; // Valfritt

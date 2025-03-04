@@ -5,13 +5,13 @@ import menuReducer from './menuSlice';
 import cartReducer from './cartSlice';
 import orderReducer from './orderSlice';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // Använder localStorage för att lagra data
+import storage from 'redux-persist/lib/storage'; //  localStorage används för att lagra data
 
 // Skapa en konfiguration för redux-persist
 const persistConfig = {
-    key: 'root', // Nyckeln där datan lagras i localStorage
+    key: 'root',
     storage,
-    whitelist: ['cart'], // Reducers som ska bevaras (i detta fall varukorgen)
+    whitelist: ['cart'],
 };
 
 // Kombinera alla reducers

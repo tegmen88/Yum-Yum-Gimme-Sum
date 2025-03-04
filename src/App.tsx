@@ -33,6 +33,7 @@ function App() {
                 await createTenant(key, tenantName);
 
                 console.log(`Tenant "${tenantName}" har skapats.`);
+                console.log('apikey', apiKey)
             } catch (error) {
                 console.error("Fel vid uppsättning av tenant:", error);
             }

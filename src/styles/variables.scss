@@ -1,3 +1,22 @@
 // Färg-, font- och layoutvariabler
 
 
+// Färger
+$primary-color: #8ed8bf;
+$secondary-color: #605858;
+$text-color-light: #ffffff;
+$text-color-dark: #333333;
+$background-color-light: #f1f0ec3d;
+$background-color-dark: #3531313d;
+
+// Typsnitt
+$font-family: 'Fira Sans', sans-serif;
+
+// Layout
+$border-radius-small: 0.25rem;
+$border-radius-medium: 0.5rem;
+$transition-speed: 0.2s;
+
+// Shadow
+$box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+$box-shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);

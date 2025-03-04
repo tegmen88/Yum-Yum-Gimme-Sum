@@ -27,14 +27,14 @@ const cartSlice = createSlice({
                 // Om produkten inte finns, lägg till den som ny
                 state.items.push({
                     id: action.payload.id,
-                    name: action.payload.name || 'Okänd Produkt', // Default fallback om name saknas
-                    price: action.payload.price || 0, // Default till 0 om price saknas
-                    quantity: action.payload.quantity || 1, // Default till 1
+                    name: action.payload.name || 'Okänd Produkt',
+                    price: action.payload.price || 0,
+                    quantity: action.payload.quantity || 1,
                 });
             }
         },
 
-        removeFromCart(state, action: PayloadAction<{ id: string; quantity?: number }>) {
+        removeFromCart(state, action: PayloadAction<{ id: string | number; quantity?: number }>) {
             const existingItem = state.items.find((item) => item.id === action.payload.id);
 
             if (existingItem) {

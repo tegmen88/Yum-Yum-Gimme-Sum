@@ -1,5 +1,4 @@
 // Redux slice för menyn
-
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { fetchMenu } from '../api/api';
 import { MenuState, IMenuItem } from '../interfaces/MenuItemInterface';

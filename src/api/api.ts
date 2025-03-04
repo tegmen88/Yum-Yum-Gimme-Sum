@@ -118,34 +118,43 @@ export const createTenant = async (apiKey: string, tenantName: string): Promise<
     }
 };
 
-
+// Funktion för att lägga en orderbeställning
 export const placeOrder = async (tenant: string, apiKey: string, items: number[]) => {
 
+    // Kontrollera att alla parametrar är giltiga
+    if (!tenant || typeof tenant !== "string") {
+        throw new Error("Tenant saknas eller är inte en giltig sträng.");
+    }
+    if (!apiKey || typeof apiKey !== "string") {
+        throw new Error("API-nyckel saknas eller är inte en sträng.");
+    }
+    if (!Array.isArray(items) || items.length === 0) {
+        throw new Error("Items måste vara en array och innehålla minst ett objekt.");
+    }
+
     try {
-
-
-        console.log("Tenant:", tenant);
         const endpoint = `${API_URL}/${tenant}/orders`;
-
-        console.log("Skickar anrop till URL:", endpoint);
+        console.log("Anropar endpoint:", endpoint);
 
         const response = await fetch(endpoint, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                'x-zocom': apiKey,
+                "Content-Type": "application/json",
+                "x-zocom": apiKey,
             },
             body: JSON.stringify({ items }),
         });
 
+        // Kontrollera om förfrågan lyckades
         if (!response.ok) {
             const errorText = await response.text();
-            console.error('Serverns svar vid misslyckad order:', errorText);
-            throw new Error(`Misslyckades att lägga order. Status: ${response.status}`);
+            throw new Error(`Misslyckades att lägga order. Status: ${response.status} - ${errorText}`);
         }
 
+        // Returnera serverns svar
         const data = await response.json();
-        console.log("Order lades framgångsrikt.", data);
+        console.log("Ordern lades korrekt:", data);
+
         return data;
     } catch (error) {
         console.error("Fel vid orderläggning:", error);
