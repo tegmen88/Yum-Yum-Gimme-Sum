@@ -91,30 +91,64 @@ export const fetchMenu = async (): Promise<{ items: IMenuItem[] }> => {
     }
 };
 
-// Funktion för orderbeställning
-export const placeOrder = async (items: any[]) => {
+// Skapa tenant frö att slutföra beställningen och placeorder
+export const createTenant = async (apiKey: string, tenantName: string): Promise<void> => {
+    try {
+        const response = await fetch(`${API_URL}/tenant`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-zocom": apiKey,
+            },
+
+
+            body: JSON.stringify({ name: tenantName }), // Tenantens namn
+        });
+
+        if (!response.ok) {
+            throw new Error(
+                `Misslyckades att skapa tenant. Status: ${response.status}`
+            );
+        }
+
+        console.log("Tenant skapades framgångsrikt.", response, tenantName, response.status);
+    } catch (error) {
+        console.error("Fel vid skapande av tenant:", error);
+        throw error;
+    }
+};
+
+
+export const placeOrder = async (tenant: string, apiKey: string, items: number[]) => {
+
     try {
 
-        await getApiKey();
 
-        const response = await fetch(`${API_URL}/order`, {
+        console.log("Tenant:", tenant);
+        const endpoint = `${API_URL}/${tenant}/orders`;
+
+        console.log("Skickar anrop till URL:", endpoint);
+
+        const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
-                'x-zocom': API_KEY,
                 'Content-Type': 'application/json',
+                'x-zocom': apiKey,
             },
             body: JSON.stringify({ items }),
         });
 
         if (!response.ok) {
-            throw new Error(`Misslyckades med att placera beställning. Status: ${response.status}`);
+            const errorText = await response.text();
+            console.error('Serverns svar vid misslyckad order:', errorText);
+            throw new Error(`Misslyckades att lägga order. Status: ${response.status}`);
         }
 
-        const result = await response.json();
-        console.log('Order placed successfully:', result);
-        return result; // Returnera svaret från API:et
-    } catch (err) {
-        console.error('Error placing order:', err);
-        throw err;
+        const data = await response.json();
+        console.log("Order lades framgångsrikt.", data);
+        return data;
+    } catch (error) {
+        console.error("Fel vid orderläggning:", error);
+        throw error;
     }
 };

@@ -5,11 +5,12 @@ import ReceiptPage from "./pages/ReceiptPage.tsx";
 import CartPage from "./pages/CartPage.tsx";
 import MenuPage from "./pages/MenuPage.tsx";
 import MenuItem from "./components/MenuItem.tsx";
-import {useEffect} from "react";
-import {fetchMenu} from "./api/api.ts";
+import {useEffect, useState} from "react";
+import {fetchMenu, getApiKey, createTenant} from "./api/api.ts";
 
 
 function App() {
+    const [apiKey, setApiKey] = useState<string | null>(null); // Hantera API-nyckel som state
 
     useEffect(() => {
         const loadMenu = async () => {
@@ -21,7 +22,26 @@ function App() {
             }
         };
 
+        const setupTenant = async () => {
+            try {
+                // Hämta API-nyckel
+                const key = await getApiKey();
+                setApiKey(key);
+
+                // Skapa en tenant
+                const tenantName = "my-foodtruck";
+                await createTenant(key, tenantName);
+
+                console.log(`Tenant "${tenantName}" har skapats.`);
+            } catch (error) {
+                console.error("Fel vid uppsättning av tenant:", error);
+            }
+        };
+
+
         loadMenu();
+        setupTenant();
+
     }, []);
 
 
@@ -35,7 +55,7 @@ function App() {
                 <Route path="/menu/item/:itemId" element={<MenuItem />} />
 
                 <Route path="/cart" element={<CartPage />} />
-                <Route path="/cart/order" element={<OrderPage />} />
+                <Route path="/order" element={<OrderPage />} />
                 <Route path="/receipt" element={<ReceiptPage />} />
             </Routes>
         </Router>

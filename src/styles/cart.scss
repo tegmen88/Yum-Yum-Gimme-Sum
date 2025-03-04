@@ -8,3 +8,107 @@
 .cart-container {
 
 }
+
+/* Huvudbehållare för varje artikel i varukorgen */
+.cart-item {
+  display: flex; /* Flexbox-layout för att anpassa namn, pris och knappar */
+  justify-content: space-between; /* Sprider elementen till vänster och höger */
+  align-items: center; /* Vertikal centrering */
+  padding: 1rem; /* Gör varje artikel visuellt rymlig */
+  border-bottom: 1px solid #ddd; /* Tunn linje mellan artiklar som separerar varje rad */
+
+  background-color: #fff; /* Vit bakgrund för artiklar */
+  font-size: 1rem; /* Lagom textstorlek */
+}
+
+/* Namn på produkten - vänsterjusterad */
+.cart-item-name {
+  text-align: left;
+  flex: 2; /* Tar mer utrymme till vänster */
+  font-weight: bold; /* Gör produktnamnet mer framträdande */
+  color: #333; /* Mörkare textfärg för bättre kontrast */
+}
+
+/* Pris - högerjusterat */
+.cart-item-price {
+  text-align: right;
+  flex: 1; /* Tar mindre utrymme till höger */
+  font-weight: bold; /* Markerar priset */
+  color: black; /* Neutral textfärg för pris */
+}
+
+/* Knappstil */
+.cart-item-buttons {
+  display: flex; /* Lägger knappar bredvid varandra */
+  gap: 0.5rem; /* Luft mellan knappar */
+
+  /* Knappar */
+  button {
+    background-color: #d3d3d3; /* Ljusgrå bakgrund */
+    color: black; /* Svart text */
+    border: none; /* Ingen kantlinje */
+    padding: 0.5rem 1rem; /* Luft runt texten i knappen */
+    border-radius: 0.25rem; /* Rundade hörn */
+    cursor: pointer; /* Klickbar */
+    font-size: 0.9rem; /* Lagom knappstorlek */
+
+    &:hover {
+      background-color: #bfbfbf; /* Mörkare grå vid hover */
+      transition: background-color 0.2s ease; /* Smidig övergång */
+    }
+
+    &:active {
+      background-color: #a8a8a8; /* Ännu mörkare grå när aktiv */
+    }
+  }
+}
+
+.totalprice-item {
+  display: flex; /* Gör texten och priset på samma rad */
+  align-items: center; /* Vertikal centrering */
+  justify-content: space-between; /* Separerar text och pris */
+  gap: 1rem; /* Luft mellan text och pris */
+
+  background-color: #3531313D; /* Lätt bakgrund för att signalera separation */
+  padding: 1rem; /* Gör den visuellt ren och avgränsad */
+  border: 1px solid #ddd; /* Lätt kantlinje för att visa en avgränsning */
+  border-radius: 0.5rem; /* Rundade hörn för modern känsla */
+  font-size: 1.25rem; /* Lagom storlek */
+  font-weight: bold; /* Markerad text */
+  color: black; /* Svart text för neutral stil */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Liten skugga för visuellt djup */
+}
+
+/* Specifika justeringar av text och värde */
+.totalprice-item span:first-child {
+  text-align: left; /* Vänsterjustera text */
+  flex: 1; /* Lämnar utrymme på vänster sida */
+}
+
+.totalprice-item span:last-child {
+  text-align: right; /* Högerjustera prisvärdet */
+}
+
+
+.btn-cart {
+  display: block; /* Gör knappen block så den tar upp hela bredden */
+  width: 100%; /* Sträcker sig från kant till kant */
+  background-color: black; /* Svart bakgrund */
+  color: white; /* Vit text */
+  text-align: center; /* Centrera texten */
+  padding: 1rem; /* Gör knappen högre */
+  font-size: 1.5rem; /* Gör texten större */
+  font-weight: bold; /* Gör texten fet */
+  border: none; /* Ta bort standardkantlinjen */
+  border-radius: 0; /* Ingen hörnavrundning för rektangulär form */
+  cursor: pointer; /* Ändra muspekaren till handpekare */
+
+  &:hover {
+    background-color: #333; /* Lite ljusare svart vid hover */
+    transition: background-color 0.3s ease; /* Smidig övergång vid hover */
+  }
+
+  &:active {
+    background-color: #555; /* Ännu ljusare svart när aktiv */
+  }
+}

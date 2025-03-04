@@ -4,31 +4,31 @@ import Navbar from "../components/Navbar.tsx";
 import '../styles/order.scss';
 
 const OrderPage = () => {
-    const [eta, setEta] = useState<number | null>(null); // Typa eta som nummer eller null
-    const [error, setError] = useState<string | null>(null); // Hantera felmeddelanden
-    const [loading, setLoading] = useState(false); // Lägg till en loader state
+    const [eta, setEta] = useState<number | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
     const handlePlaceOrder = async () => {
-        setError(null); // Återställ fel
-        setLoading(true); // Visa att laddning pågår
+        setError(null);
+        setLoading(true);
 
         try {
-            const data = await placeOrder([]); // Använd den modulära API-funktionen
-            setEta(data.eta); // Sätt ETA från API-svaret
+            const data = await placeOrder([]); // modulära API-funktionen
+            setEta(data.eta); //  ETA sätts från API-svaret
         } catch (err: any) {
-            setError(err.message); // Hantera och visa fel
+            setError(err.message);
         } finally {
-            setLoading(false); // Avsluta laddningen
+            setLoading(false);
         }
     };
 
     return (
-        <div>
+        <div className='order-container'>
             <Navbar />
 
             <h1>Beställning</h1>
             <button onClick={handlePlaceOrder} disabled={loading}>
-                {loading ? 'Laddar...' : 'Lägg beställning'}
+                {loading ? 'Laddar...' : 'Lägg till en ny beställning'}
             </button>
             {eta && <p>Beräknad ankomsttid: {eta} minuter</p>}
             {error && <p style={{ color: 'red' }}>Fel: {error}</p>}
