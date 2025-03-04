@@ -1,14 +1,13 @@
-// Importera variabler och navbar-stilar
-@import '../styles/variables.scss';
-@import '../styles/navbar.scss';
+@use '../styles/variables' as variables;
+@use '../styles/navbar' as navbar;
 
 .order-container {
-  background-color: $background-color-brown;
+  background-color: variables.$background-color-brown;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: $gap;
+  gap: variables.$gap;
   padding: 2rem;
   min-height: 100vh;
   text-align: center;
@@ -18,14 +17,14 @@
   }
 
   h1 {
-    color: $text-color-light;
-    font-size: $font-size-large;
+    color: variables.$text-color-light;
+    font-size: variables.$font-size-large;
     margin: 0;
   }
 
   h3 {
-    color: $text-color-light;
-    font-size: $font-size-medium;
+    color: variables.$text-color-light;
+    font-size: variables.$font-size-medium;
     margin: 0.5rem 0;
   }
 
@@ -38,14 +37,14 @@
     text-transform: uppercase;
     background-color: #353131;
     font-weight: bold;
-    border-radius: $border-radius-medium;
+    border-radius: variables.$border-radius-medium;
     display: block;
-    transition: background-color $transition-speed, color $transition-speed;
+    transition: background-color variables.$transition-speed, color variables.$transition-speed;
   }
 
   button:first-of-type {
     background-color: #353131;
-    color: $text-color-light;
+    color: variables.$text-color-light;
     border: none;
 
     &:hover {
@@ -55,7 +54,7 @@
 
   button:last-of-type {
     background-color: #605858;
-    color: $text-color-light;
+    color: variables.$text-color-light;
     border: 1px white solid;
 
     &:hover {
