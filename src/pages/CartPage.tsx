@@ -5,6 +5,7 @@ import { RootState } from "../store/store.ts";
 import {useNavigate} from "react-router-dom";
 import { useState } from 'react';
 import {getApiKey, placeOrder} from '../api/api.ts';
+import Navbar from "../components/Navbar.tsx";
 
 const CartPage = () => {
     const dispatch = useDispatch();
@@ -58,6 +59,7 @@ const CartPage = () => {
 
     return (
         <div className='cart-container'>
+            <Navbar/>
             <h1 className='test'>Din varukorg</h1>
 
             {cart.length > 0 ? (
