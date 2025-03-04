@@ -1,5 +1,66 @@
-//  Styling för beställning
+// Importera variabler och navbar-stilar
+@import 'variables.scss';
+@import '../styles/navbar.scss';
 
 .order-container {
-  background-color: #605858;
+  background-color: $background-color-brown;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
+  padding: 2rem;
+  min-height: 100vh;
+  text-align: center;
+
+  figure {
+    margin: 0;
+  }
+
+  h1 {
+    color: $text-color-light;
+    font-size: $font-size-large;
+    margin: 0;
+  }
+
+  h3 {
+    color: $text-color-light;
+    font-size: $font-size-medium;
+    margin: 0.5rem 0;
+  }
+
+  button {
+    width: calc(100% - 2rem);
+    max-width: 400px;
+    padding: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: #353131;
+    font-weight: bold;
+    border-radius: $border-radius-medium;
+    margin: 1rem auto;
+    display: block;
+    transition: background-color $transition-speed, color $transition-speed;
+  }
+
+  button:first-of-type {
+    background-color: #353131;
+    color: $text-color-light;
+    border: none;
+
+    &:hover {
+      background-color: darken(#353131, 10%);
+    }
+  }
+
+  button:last-of-type {
+    background-color: #605858;
+    color: $text-color-light;
+    border: 1px white solid;
+
+    &:hover {
+      background-color: lighten(#605858, 10%);
+    }
+  }
 }
