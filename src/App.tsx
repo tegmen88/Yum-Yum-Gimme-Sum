@@ -27,6 +27,7 @@ function App() {
 
         return (
         <Router>
+
             <Routes>
                 <Route path="/" element={<MenuPage />} />
                 <Route path="/menu" element={<MenuPage />} />

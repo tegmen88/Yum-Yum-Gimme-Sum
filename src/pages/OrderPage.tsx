@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import {placeOrder} from "../api/api.ts";
+import Navbar from "../components/Navbar.tsx";
+import '../styles/order.scss';
 
 const OrderPage = () => {
     const [eta, setEta] = useState<number | null>(null); // Typa eta som nummer eller null
@@ -22,6 +24,8 @@ const OrderPage = () => {
 
     return (
         <div>
+            <Navbar />
+
             <h1>Beställning</h1>
             <button onClick={handlePlaceOrder} disabled={loading}>
                 {loading ? 'Laddar...' : 'Lägg beställning'}

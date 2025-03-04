@@ -5,6 +5,7 @@ import '../styles/menu.scss';
 import {addToCart} from "../store/cartSlice.ts";
 // import AddIcon from '@mui/icons-material/Add';
 import { useDispatch } from 'react-redux';
+import Navbar from "../components/Navbar.tsx";
 
 const MenuPage: React.FC = () => {
     const dispatch = useDispatch();
@@ -62,12 +63,16 @@ const MenuPage: React.FC = () => {
 
     return (
         <div className="menu-container">
+
+            <Navbar />
+
+
             <div className="menu-content">
                 <h1>Menyn</h1>
 
                 {/* Första sektionen: Mat */}
                 <div className="menu-category food-category">
-                    {/* Dölj rubriken här */}
+                    {/* Döljerr rubriken här */}
                     <ul>
                         {foodItems.map((item) => (
                             <li key={item.id} className="menu-item" onClick={() => handleAddToCart(item)}>
@@ -78,9 +83,9 @@ const MenuPage: React.FC = () => {
 
                                 {/* Knapp - utan synlighet */}
                                 <button
-                                    className="add-button"
+                                    className="btn add-button"
                                     onClick={(e) => {
-                                        e.stopPropagation(); // Hindra bubbla till <li> om det behövs
+                                        e.stopPropagation();
                                         handleAddToCart(item);
                                     }}
                                 >
@@ -96,11 +101,20 @@ const MenuPage: React.FC = () => {
 
                     <ul className="dipso-lists">
                         {dipItems.map((item) => (
-                            <li key={item.id} className="dip-list-item">
-                                {item.name}
+                            <li
+                                key={item.id}
+                                className="dip-list-item"
+                                onClick={() => handleAddToCart(item)} // Klick på hela listobjektet
+                            >
+                                <p>{item.name}</p>
 
-                                <button onClick={() => handleAddToCart(item)}></button>
-
+                                <button
+                                    className='btn btn-menu'
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // Förhindra att klickhändelsen bubblar upp
+                                        handleAddToCart(item);
+                                    }}
+                                ></button>
                             </li>
                         ))}
                     </ul>
@@ -109,13 +123,22 @@ const MenuPage: React.FC = () => {
                 {/* Tredje sektionen: Läsk */}
                 <div className="menu-category drink-category">
                     <h2>Läsk 19 kr</h2>
-                    <ul className="dips-lists">
+                    <ul className="dipso-lists">
                         {drinkItems.map((item) => (
-                            <li key={item.id}>
+                            <li
+                                key={item.id}
+                                className="dip-list-item"
+                                onClick={() => handleAddToCart(item)} // Klick på hela listobjektet
+                            >
                                 <p>{item.name}</p>
 
-                                <button onClick={() => handleAddToCart(item)}></button>
-
+                                <button
+                                    className='btn btn-menu'
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // Förhindra att klickhändelsen bubblar upp
+                                        handleAddToCart(item); // Hantera klick på enbart knappen
+                                    }}
+                                ></button>
                             </li>
                         ))}
                     </ul>
