@@ -5,15 +5,28 @@ import Navbar from "../components/Navbar.tsx";
 import {useLocation} from "react-router-dom";
 
 const OrderPage = () => {
-    const [eta, setEta] = useState<number>(15 * 60);
+    const [eta, setEta] = useState<number>(5 * 60);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const location = useLocation();
 
-    const orderId = location.state?.orderNr || "Okänt"; // Hämta ordernummer från staten
+    //const orderId = location.state?.orderNr || "Okänt"; // Hämta ordernummer från staten
     const etaFromServer = location.state?.eta || null;
     const [formattedEta, setFormattedEta] = useState<string>("");
 
+    const [orderId, setOrderId] = useState<string>("Okänt");
+
+    // Hämta ordernummer från konsolen eller en annan källa
+    useEffect(() => {
+        // Exempel: Hämta ordernummer från konsolens globala variabel
+        const consoleOrderId = (window as any).orderId || null;
+
+        if (consoleOrderId) {
+            setOrderId(consoleOrderId); // Sätt ordernumret om det finns
+        } else if (location.state?.orderNr) {
+            setOrderId(location.state?.orderNr); // Fallback till "state" om konsolen inte ger ett värde
+        }
+    }, [location.state]);
 
     // Konvertera tid i sekunder till minuter och sekunder
     const formatTime = (seconds: number) => {
@@ -47,7 +60,7 @@ const OrderPage = () => {
         }, 1000);
 
         // Rensa intervallet när komponenten avmonteras
-
+        console.log(formattedEta)
         return () => clearInterval(timer);
     }, [eta]);
 

@@ -1,5 +1,5 @@
 // Importera variabler och navbar-stilar
-@import 'variables.scss';
+@import '../styles/variables.scss';
 @import '../styles/navbar.scss';
 
 .order-container {
@@ -39,7 +39,6 @@
     background-color: #353131;
     font-weight: bold;
     border-radius: $border-radius-medium;
-    margin: 1rem auto;
     display: block;
     transition: background-color $transition-speed, color $transition-speed;
   }
@@ -50,7 +49,7 @@
     border: none;
 
     &:hover {
-      background-color: darken(#353131, 10%);
+      background-color: #6e6262;
     }
   }
 
@@ -60,7 +59,7 @@
     border: 1px white solid;
 
     &:hover {
-      background-color: lighten(#605858, 10%);
+      background-color: #7f6f6f;
     }
   }
 }

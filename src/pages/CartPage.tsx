@@ -45,7 +45,16 @@ const CartPage = () => {
             console.log("Beställning genomförd:", response);
 
             // Navigera till OrderPage efter en lyckad order
-            navigate("/order");
+            //navigate("/order");
+            navigate("/order", {
+                state: {
+                    orderNr: response.order.id,
+                    eta: response.order.eta,
+                    orderValue: response.order.orderValue,
+                    items: response.order.items,
+                },
+            });
+
         } catch (err: any) {
             console.error("Fel vid beställning:", err);
             setError(err.message || "Ett oväntat fel inträffade.");
