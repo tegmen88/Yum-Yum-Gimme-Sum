@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {getApiKey, placeOrder} from "../api/api.ts";
 import '../styles/order.scss';
 import Navbar from "../components/Navbar.tsx";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const OrderPage = () => {
     const [eta, setEta] = useState<number>(5 * 60);
@@ -15,6 +15,7 @@ const OrderPage = () => {
     const [formattedEta, setFormattedEta] = useState<string>("");
 
     const [orderId, setOrderId] = useState<string>("Okänt");
+    const navigate = useNavigate();
 
     // Hämta ordernummer från konsolen eller en annan källa
     useEffect(() => {
@@ -81,6 +82,8 @@ const OrderPage = () => {
             const items: number[] = []; // Tom array, fylls med produkt-ID:n senare
 
             const data = await placeOrder(tenant, apiKey, items);
+
+
             setEta(data.eta); // Spara och visa ETA
         } catch (err: any) {
             setError(err.message);
@@ -88,6 +91,10 @@ const OrderPage = () => {
             setLoading(false);
         }
     };
+
+    const naviagetToMenu = () => {
+        navigate('/menu')
+    }
 
     return (
         <>
@@ -103,12 +110,14 @@ const OrderPage = () => {
                 <h3>ETA: {formatTime(eta)}</h3>
                 <h3>#{orderId}</h3>
 
-                <button onClick={handlePlaceOrder} disabled={loading}>
+                {/*<button onClick={handlePlaceOrder} disabled={loading}>*/}
+                <button onClick={naviagetToMenu} disabled={loading}>
+
                     {loading ? 'Laddar...' : 'Lägg till en ny beställning'}
                 </button>
                 {/*{eta && <p>Beräknad ankomsttid: {eta} minuter</p>}*/}
-                {error && <p style={{ color: 'red' }}>Fel: {error}</p>}
-                <button>Se kvitto</button>
+                {error && <p style={{ color: 'white' }}>Fel: {error}</p>}
+                <button onClick={()=> console.log('retrieving receipt')}>Se kvitto</button>
             </div>
         </>
     );
