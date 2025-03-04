@@ -1,12 +1,17 @@
 import '../styles/navbar.scss';
-import Badge from "@mui/material/Badge";
+import Badge from '@mui/material/Badge';
 import logo from '../assets/logo-trans.svg';
-import { ShoppingBasketOutlined} from "@mui/icons-material";
+import { LocalMallOutlined} from '@mui/icons-material';
+import { useSelector } from 'react-redux';
+import { selectCartCount } from '../store/cartSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const cartCount = useSelector(selectCartCount); // Hämtar antalat från varukorgens räknare
+
     return (
         <div>
-
             <div className="menu-header">
 
                 {/* Vänsterlogga */}
@@ -15,13 +20,17 @@ const Navbar = () => {
                 </div>
 
                 {/* Höger: Kundvagn med badge */}
-                <div className="menu-cart">
-                    <Badge badgeContent={3} color="error">
-                        <ShoppingBasketOutlined fontSize="large" />
+                <div
+                    className="menu-cart"
+                    onClick={() => navigate('/cart')}
+                    style={{ cursor: 'pointer' }}
+                >
+                    <Badge badgeContent={cartCount} color="error">
+                        <LocalMallOutlined fontSize="large" />
                     </Badge>
+
                 </div>
             </div>
-
         </div>
     );
 };

@@ -11,3 +11,10 @@ export interface ICartItem {
     quantity: number;
 }
 
+// Typ för `addToCart` och `removeFromCart` inputs
+export interface ICartActionPayload {
+    id: string;
+    name?: string; // Valfritt
+    price?: number; // Valfritt
+    quantity?: number; // Valfritt
+}

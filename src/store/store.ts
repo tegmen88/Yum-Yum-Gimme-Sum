@@ -1,19 +1,41 @@
 // Konfiguration av Redux Store
 
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import menuReducer from './menuSlice';
 import cartReducer from './cartSlice';
 import orderReducer from './orderSlice';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // Använder localStorage för att lagra data
 
-export const store = configureStore({
-    reducer: {
-        menu: menuReducer,
-        cart: cartReducer,
-        order: orderReducer,
-    },
+// Skapa en konfiguration för redux-persist
+const persistConfig = {
+    key: 'root', // Nyckeln där datan lagras i localStorage
+    storage,
+    whitelist: ['cart'], // Reducers som ska bevaras (i detta fall varukorgen)
+};
+
+// Kombinera alla reducers
+const rootReducer = combineReducers({
+    menu: menuReducer,
+    cart: cartReducer,
+    order: orderReducer,
 });
 
+// Skapa en persistReducer baserat på konfigureringen
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// Konfigurera store med persistReducer
+export const store = configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false, // Behövs för att hantera redux-persist
+        }),
+});
+
+// Skapa en persistor för att hantera localStorage
+export const persistor = persistStore(store);
+
+// Exportera store-typer
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-// tState = ReturnType<typeof store.getState>;
-

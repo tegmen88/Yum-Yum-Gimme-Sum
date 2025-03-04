@@ -50,7 +50,7 @@ const MenuPage: React.FC = () => {
 
     };
 
-        // Visa laddningsmeddelande
+    // Visa laddningsmeddelande
     if (loading) return <p>Laddar menyn...</p>;
 
     // Visa felmeddelande
@@ -75,21 +75,21 @@ const MenuPage: React.FC = () => {
                     {/* Döljerr rubriken här */}
                     <ul>
                         {foodItems.map((item) => (
-                            <li key={item.id} className="menu-item" onClick={() => handleAddToCart(item)}>
-                                <h3>
-                                    {item.name} - {item.price || 0} kr
-                                </h3>
-                                <p>{item.ingredients || 'Ingen ingrediens tillgänglig'}</p>
+                            <li
+                                key={item.id}
+                                className="menu-item"
+                                onClick={() => handleAddToCart(item)}
+                            >
+                                {/* Matdelen vänsterjusterad */}
+                                <div className="food">
+                                    <h3>{item.name}</h3>
+                                    <p>{item.ingredients || "Ingen ingrediens tillgänglig"}</p>
+                                </div>
 
-                                {/* Knapp - utan synlighet */}
-                                <button
-                                    className="btn add-button"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleAddToCart(item);
-                                    }}
-                                >
-                                </button>
+                                {/* Prisdelen högerjusterad */}
+                                <div className="price">
+                                    {item.price || 0} kr
+                                </div>
                             </li>
                         ))}
                     </ul>
@@ -104,14 +104,14 @@ const MenuPage: React.FC = () => {
                             <li
                                 key={item.id}
                                 className="dip-list-item"
-                                onClick={() => handleAddToCart(item)} // Klick på hela listobjektet
+                                onClick={() => handleAddToCart(item)}
                             >
                                 <p>{item.name}</p>
 
                                 <button
                                     className='btn btn-menu'
                                     onClick={(e) => {
-                                        e.stopPropagation(); // Förhindra att klickhändelsen bubblar upp
+                                        e.stopPropagation();
                                         handleAddToCart(item);
                                     }}
                                 ></button>

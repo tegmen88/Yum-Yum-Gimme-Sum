@@ -18,3 +18,7 @@ https://sass-lang.com/install/
 
 npm list react-redux
 npm install react-redux
+npm install redux-persist
+
+
+
